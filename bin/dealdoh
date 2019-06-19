@@ -1,0 +1,22 @@
+#!/usr/bin/env php
+<?php
+
+require __DIR__ . '/../config/bootstrap.php';
+
+use NoGlitchYo\DealdohClient\Action\Command\AddUpstreamCommand;
+use NoGlitchYo\DealdohClient\Action\Command\ListUpstreamCommand;
+use NoGlitchYo\DealdohClient\Action\Command\ResolveCommand;
+use Symfony\Component\Console\Application;
+
+/** @var Psr\Container\ContainerInterface $container */
+
+$application = new Application();
+
+$application->addCommands([
+    $container->get(AddUpstreamCommand::class),
+    $container->get(ListUpstreamCommand::class),
+    $container->get(ResolveCommand::class),
+]);
+
+$application->run();
+

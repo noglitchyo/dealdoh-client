@@ -1,0 +1,58 @@
+{
+  "name": "noglitchyo/dealdoh-client",
+  "description": "A DNS proxy client to make/forward DNS query via HTTP & CLI with different protocols.",
+  "keywords": [
+    "dns",
+    "dns-resolver",
+    "dns-over-https",
+    "doh",
+    "dns-proxy",
+    "dns-client"
+  ],
+  "license": "MIT",
+  "authors": [
+    {
+      "email": "maxime.elomari@gmail.com",
+      "name": "Maxime Elomari"
+    }
+  ],
+  "require": {
+    "ext-json": "*",
+    "noglitchyo/dealdoh": "dev-master",
+    "nyholm/psr7": "^1.1",
+    "slim/http": "^0.7.0",
+    "php": "^7.3",
+    "psr/http-client": "*",
+    "psr/log": "^1.1",
+    "slim/slim": "4.0.0-beta",
+    "symfony/console": "^4.3",
+    "php-di/php-di": "^6.0",
+    "php-http/guzzle6-adapter": "^2.0"
+  },
+  "require-dev": {
+    "phpunit/phpunit": "^8.1",
+    "mockery/mockery": "^1.2",
+    "monolog/monolog": "^1.24",
+    "squizlabs/php_codesniffer": "*",
+    "phpstan/phpstan": "^0.11.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "NoGlitchYo\\DealdohClient\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "NoGlitchYo\\DealdohClient\\Tests\\": "tests/"
+    }
+  },
+  "minimum-stability": "alpha",
+  "bin": [
+    "bin/dealdoh"
+  ],
+  "scripts": {
+    "phpstan": "phpstan analyse -l max src",
+    "phpcs": "phpcs --standard=PSR2 ./src/",
+    "test": "phpunit phpunit.dist.xml"
+  }
+}

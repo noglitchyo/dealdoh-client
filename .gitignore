@@ -1,0 +1,8 @@
+.DS_Store
+.idea
+phpunit.xml
+vendor
+coverage
+clover.xml
+.phpunit*
+config/upstreampool.json
