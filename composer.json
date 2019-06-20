@@ -18,7 +18,6 @@
   ],
   "require": {
     "ext-json": "*",
-    "noglitchyo/dealdoh": "dev-master",
     "nyholm/psr7": "^1.1",
     "slim/http": "^0.7.0",
     "php": "^7.3",
@@ -27,7 +26,8 @@
     "slim/slim": "4.0.0-beta",
     "symfony/console": "^4.3",
     "php-di/php-di": "^6.0",
-    "php-http/guzzle6-adapter": "^2.0"
+    "php-http/guzzle6-adapter": "^2.0",
+    "noglitchyo/dealdoh": "^0.3.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^8.1",

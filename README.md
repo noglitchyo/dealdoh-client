@@ -18,6 +18,10 @@ dealdoh-client can be use in different manners and for different purposes:
 
 Dealdoh is built on top of the [Dealdoh library](https://github.com/noglitchyo/dealdoh).
 
+## Roadmap
+
+- [ ] Dockerized application
+
 ## Getting started
 
 As mentionned above, there is multiple ways to use dealdoh-client.

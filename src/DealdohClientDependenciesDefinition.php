@@ -7,6 +7,7 @@ use Http\Adapter\Guzzle6\Client;
 use NoGlitchYo\Dealdoh\Client\DohClient;
 use NoGlitchYo\Dealdoh\Client\GoogleDnsClient;
 use NoGlitchYo\Dealdoh\Client\StdClient;
+use NoGlitchYo\Dealdoh\DohProxy;
 use NoGlitchYo\Dealdoh\Entity\DnsUpstreamPool;
 use NoGlitchYo\Dealdoh\Entity\DnsUpstreamPoolInterface;
 use NoGlitchYo\Dealdoh\Factory\Dns\MessageFactory;
@@ -18,13 +19,14 @@ use NoGlitchYo\Dealdoh\Service\DnsPoolResolver;
 use NoGlitchYo\DealdohClient\Action\Command\AddUpstreamCommand;
 use NoGlitchYo\DealdohClient\Action\Command\ListUpstreamCommand;
 use NoGlitchYo\DealdohClient\Action\Command\ResolveCommand;
-use NoGlitchYo\DealdohClient\Action\Http\DnsQueryAction;
-use NoGlitchYo\DealdohClient\Domain\HttpProxy;
 use NoGlitchYo\DealdohClient\Domain\Service\UpstreamPool\AddUpstreamService;
 use Psr\Container\ContainerInterface;
 use Psr\Http\Client\ClientInterface;
 use Socket\Raw\Factory;
 
+/**
+ * @codeCoverageIgnore
+ */
 class DealdohClientDependenciesDefinition
 {
     public const UPSTREAM_POOL_FILE_PATH = 'upstream.pool.file_path';
@@ -51,15 +53,17 @@ class DealdohClientDependenciesDefinition
             StdClient::class => function (ContainerInterface $container): StdClient {
                 return new StdClient(new Factory(), $container->get(MessageFactory::class));
             },
-            HttpProxy::class => function (ContainerInterface $container): HttpProxy {
-                return new HttpProxy(
+            DohProxy::class => function (ContainerInterface $container): DohProxy {
+                return new DohProxy(
                     $container->get(DnsPoolResolver::class),
                     $container->get(MessageFactory::class),
                     $container->get(DohHttpMessageFactory::class)
                 );
             },
             DnsUpstreamPool::class => function (ContainerInterface $container): DnsUpstreamPoolInterface {
-                return DnsUpstreamPool::fromJson($container->get(DealdohClientDependenciesDefinition::UPSTREAM_POOL_JSON));
+                return DnsUpstreamPool::fromJson(
+                    $container->get(DealdohClientDependenciesDefinition::UPSTREAM_POOL_JSON)
+                );
             },
             DnsPoolResolver::class => function (ContainerInterface $container): DnsPoolResolver {
                 return new DnsPoolResolver(
@@ -71,11 +75,11 @@ class DealdohClientDependenciesDefinition
                     ]
                 );
             },
-            DnsQueryAction::class => function (ContainerInterface $container): DnsQueryAction {
-                return new DnsQueryAction($container->get(HttpProxy::class));
-            },
             ResolveCommand::class => function (ContainerInterface $container): ResolveCommand {
-                return new ResolveCommand($container->get(DnsPoolResolver::class), $container->get(MessageFactory::class));
+                return new ResolveCommand(
+                    $container->get(DnsPoolResolver::class),
+                    $container->get(MessageFactory::class)
+                );
             },
             AddUpstreamCommand::class => function (ContainerInterface $container): AddUpstreamCommand {
                 return new AddUpstreamCommand(

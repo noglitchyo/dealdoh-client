@@ -19,6 +19,7 @@ class AddUpstreamCommand extends Command
      * @var string
      */
     private $upstreamPoolFilePath;
+
     /**
      * @var AddUpstreamService
      */
@@ -54,10 +55,12 @@ class AddUpstreamCommand extends Command
     {
         $io = new SymfonyStyle($input, $output);
 
+        /** @var string $upstreamCode */
         $upstreamCode = $input->getArgument('code');
+        /** @var string $upstreamUri */
         $upstreamUri = $input->getArgument('uri');
 
-        if (!empty($upstreamCode) && !is_string($upstreamCode)) {
+        if (empty($upstreamCode) || !is_string($upstreamCode)) {
             throw new InvalidArgumentException('Upstream code must be a string');
         }
 
@@ -69,7 +72,9 @@ class AddUpstreamCommand extends Command
             $this->addUpstreamService->add($upstreamUri, $upstreamCode);
             $io->success(sprintf("Added upstream `%s` successfully.", $upstreamUri));
         } catch (Throwable $t) {
-            $io->error(sprintf("Failed to configure DNS %s file.", pathinfo($this->upstreamPoolFilePath, PATHINFO_BASENAME)));
+            $io->error(
+                sprintf("Failed to configure DNS %s file.", pathinfo($this->upstreamPoolFilePath, PATHINFO_BASENAME))
+            );
             $output->writeln('<comment>' . $t->getMessage() . '</comment>');
         }
     }

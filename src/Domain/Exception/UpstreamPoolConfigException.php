@@ -4,6 +4,9 @@ namespace NoGlitchYo\DealdohClient\Domain\Exception;
 
 use Exception;
 
+/**
+ * @codeCoverageIgnore
+ */
 class UpstreamPoolConfigException extends Exception
 {
 

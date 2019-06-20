@@ -4,7 +4,7 @@ namespace NoGlitchYo\Dealdoh\Tests\Unit\Domain\Command;
 
 use InvalidArgumentException;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-use NoGlitchYo\Dealdoh\Command\ResolveCommand;
+use NoGlitchYo\DealdohClient\Action\Command\ResolveCommand;
 use NoGlitchYo\Dealdoh\Entity\Dns\Message;
 use NoGlitchYo\Dealdoh\Entity\Dns\Message\Section\Query;
 use NoGlitchYo\Dealdoh\Entity\Dns\Message\Section\ResourceRecordInterface;

@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "063e84cbe8f72ea67384d857fbb702d7",
+    "content-hash": "2446a927bad88801b5eefecae473e9cf",
     "packages": [
         {
             "name": "clue/socket-raw",
@@ -444,16 +444,16 @@
         },
         {
             "name": "noglitchyo/dealdoh",
-            "version": "dev-master",
+            "version": "0.3.0-alpha",
             "source": {
                 "type": "git",
                 "url": "https://github.com/noglitchyo/dealdoh.git",
-                "reference": "06f2f08a95eb01d420f3cfd63c62660ab661ba06"
+                "reference": "40ab40de05294df02a2c0605d04686a14dd3ff2b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/noglitchyo/dealdoh/zipball/06f2f08a95eb01d420f3cfd63c62660ab661ba06",
-                "reference": "06f2f08a95eb01d420f3cfd63c62660ab661ba06",
+                "url": "https://api.github.com/repos/noglitchyo/dealdoh/zipball/40ab40de05294df02a2c0605d04686a14dd3ff2b",
+                "reference": "40ab40de05294df02a2c0605d04686a14dd3ff2b",
                 "shasum": ""
             },
             "require": {
@@ -464,6 +464,7 @@
                 "php": "^7.3",
                 "php-http/guzzle6-adapter": "^2.0",
                 "psr/http-client": "*",
+                "psr/http-server-middleware": "^1.0",
                 "psr/log": "^1.1",
                 "react/dns": "^0.4.17"
             },
@@ -499,7 +500,7 @@
                 "dns-resolver",
                 "doh"
             ],
-            "time": "2019-06-19T15:11:46+00:00"
+            "time": "2019-06-20T14:12:11+00:00"
         },
         {
             "name": "nyholm/psr7",
@@ -2056,23 +2057,23 @@
         },
         {
             "name": "symfony/service-contracts",
-            "version": "v1.1.2",
+            "version": "v1.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/service-contracts.git",
-                "reference": "191afdcb5804db960d26d8566b7e9a2843cab3a0"
+                "reference": "f391a00de78ec7ec8cf5cdcdae59ec7b883edb8d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/191afdcb5804db960d26d8566b7e9a2843cab3a0",
-                "reference": "191afdcb5804db960d26d8566b7e9a2843cab3a0",
+                "url": "https://api.github.com/repos/symfony/service-contracts/zipball/f391a00de78ec7ec8cf5cdcdae59ec7b883edb8d",
+                "reference": "f391a00de78ec7ec8cf5cdcdae59ec7b883edb8d",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3"
+                "php": "^7.1.3",
+                "psr/container": "^1.0"
             },
             "suggest": {
-                "psr/container": "",
                 "symfony/service-implementation": ""
             },
             "type": "library",
@@ -2110,7 +2111,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-05-28T07:50:59+00:00"
+            "time": "2019-06-13T11:15:36+00:00"
         }
     ],
     "packages-dev": [
@@ -4717,9 +4718,7 @@
     ],
     "aliases": [],
     "minimum-stability": "alpha",
-    "stability-flags": {
-        "noglitchyo/dealdoh": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {
