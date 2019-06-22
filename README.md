@@ -8,6 +8,7 @@ dealdoh-client is a simple DNS client embedding a DNS-over-HTTPS (DoH) proxy ser
 [![codecov](https://codecov.io/gh/noglitchyo/dealdoh-client/branch/master/graph/badge.svg)](https://codecov.io/gh/noglitchyo/dealdoh-client)
 ![Scrutinizer code quality (GitHub/Bitbucket)](https://img.shields.io/scrutinizer/quality/g/noglitchyo/dealdoh-client.svg)
 ![Packagist](https://img.shields.io/packagist/l/noglitchyo/dealdoh-client.svg)
+![Docker Cloud Build Status](https://img.shields.io/docker/cloud/build/noglitchyo/dealdoh-client.svg)
 
 ## Description
 
@@ -20,7 +21,7 @@ Dealdoh is built on top of the [Dealdoh library](https://github.com/noglitchyo/d
 
 ## Roadmap
 
-- [ ] Dockerized application
+- [x] [Docker image](./docker/README.md)
 
 ## Getting started
 
