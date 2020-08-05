@@ -20,16 +20,16 @@ class ResolveCommand extends Command
     public const NAME = 'resolve';
 
     private const TYPES_MAP = [
-        'A' => ResourceRecordInterface::TYPE_A,
-        'NS' => ResourceRecordInterface::TYPE_NS,
+        'A'     => ResourceRecordInterface::TYPE_A,
+        'NS'    => ResourceRecordInterface::TYPE_NS,
         'CNAME' => ResourceRecordInterface::TYPE_CNAME,
-        'SOA' => ResourceRecordInterface::TYPE_SOA,
-        'PTR' => ResourceRecordInterface::TYPE_PTR,
-        'MX' => ResourceRecordInterface::TYPE_MX,
-        'TXT' => ResourceRecordInterface::TYPE_TXT,
-        'AAAA' => ResourceRecordInterface::TYPE_AAAA,
-        'SRV' => ResourceRecordInterface::TYPE_SRV,
-        'ANY' => ResourceRecordInterface::TYPE_ANY,
+        'SOA'   => ResourceRecordInterface::TYPE_SOA,
+        'PTR'   => ResourceRecordInterface::TYPE_PTR,
+        'MX'    => ResourceRecordInterface::TYPE_MX,
+        'TXT'   => ResourceRecordInterface::TYPE_TXT,
+        'AAAA'  => ResourceRecordInterface::TYPE_AAAA,
+        'SRV'   => ResourceRecordInterface::TYPE_SRV,
+        'ANY'   => ResourceRecordInterface::TYPE_ANY,
     ];
 
     /**
@@ -89,8 +89,12 @@ class ResolveCommand extends Command
             );
         }
 
-        $dnsMessage = (Message::createWithDefaultHeader())
-            ->addQuestion(new Query($queryName, $queryType, ResourceRecordInterface::CLASS_IN));
+        $dnsMessage = $this->messageFactory->create()
+            ->withQuestionSection(
+                new Message\Section\QuestionSection(
+                    [new Query($queryName, $queryType, ResourceRecordInterface::CLASS_IN)]
+                )
+            );
 
         try {
             $dnsResource = $this->dnsResolver->resolve($dnsMessage);
@@ -106,7 +110,7 @@ class ResolveCommand extends Command
 
             $output->writeln($jsonDnsResponse);
         } catch (Throwable $t) {
-            $io->error("DNS query failed to resolve.");
+            $io->error("DNS query failed to resolve:");
             $output->writeln('<comment>' . $t->getMessage() . '</comment>');
         }
     }

@@ -22,3 +22,9 @@ Default PHP port 9000 is exposed.
 
 `docker exec dealdoh-client bin/dealdoh <your command>`
 
+
+### Build the image
+
+You can also build the image from the docker directory and use it.
+
+`docker build -f docker/Dockerfile -t dealdoh-client-dev .`

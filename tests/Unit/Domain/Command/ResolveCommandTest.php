@@ -4,12 +4,12 @@ namespace NoGlitchYo\Dealdoh\Tests\Unit\Domain\Command;
 
 use InvalidArgumentException;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
-use NoGlitchYo\DealdohClient\Action\Command\ResolveCommand;
 use NoGlitchYo\Dealdoh\Entity\Dns\Message;
 use NoGlitchYo\Dealdoh\Entity\Dns\Message\Section\Query;
 use NoGlitchYo\Dealdoh\Entity\Dns\Message\Section\ResourceRecordInterface;
 use NoGlitchYo\Dealdoh\Factory\Dns\MessageFactoryInterface;
 use NoGlitchYo\Dealdoh\Service\DnsResolverInterface;
+use NoGlitchYo\DealdohClient\Action\Command\ResolveCommand;
 use PHPUnit\Framework\MockObject\MockObject;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Console\Application;
@@ -58,8 +58,12 @@ class ResolveCommandTest extends TestCase
         $queryType = 'AAAA';
         $queryName = 'domain.com';
 
-        $dnsMessage = (Message::createWithDefaultHeader())
-            ->addQuestion(new Query($queryName, ResourceRecordInterface::TYPE_AAAA, ResourceRecordInterface::CLASS_IN));
+        $dnsMessage = $this->messageFactoryMock->create()
+            ->withQuestionSection(
+                new Message\Section\QuestionSection(
+                    [new Query($queryName, ResourceRecordInterface::TYPE_AAAA, ResourceRecordInterface::CLASS_IN)]
+                )
+            );
 
         $this->dnsResolverMock
             ->expects($this->once())
